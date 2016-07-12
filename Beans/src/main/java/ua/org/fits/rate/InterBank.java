@@ -14,7 +14,7 @@ public class InterBank {
     private String bid;
     private String ask;
     private Currency currency;
-    private boolean isDeleted;
+    private String isDeleted;
 
 
 }
