@@ -1,4 +1,5 @@
-import org.springframework.boot.SpringApplication;
+package hello;
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -12,17 +13,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @EnableScheduling
 @EnableAutoConfiguration
-public class SampleController {
-
-    @RequestMapping("/")
+public class SampleController2 {
+//    @Autowired
+//    JdbcTemplate jdbcTemplate;
+@RequestMapping("/drive")
     @ResponseBody
     String home() {
-        return "Hello World!";
+        return "Hello World222222!";
     }
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SampleController.class, args);
-    }
+//    @RequestMapping("/testdb")
+//    @ResponseBody
+//    String testdb() {
+//        String sql = "SELECT curname FROM currency WHERE curid = ?";
+//        String cur = jdbcTemplate.queryForObject(sql, String.class, "UAH");
+//        return cur;
+//    }
+
 
     @Scheduled(fixedDelay = 5000)
     public void printHello() {
