@@ -11,8 +11,8 @@ public class InterBank {
     private long id;
     private LocalDateTime pointDate;
     private LocalDateTime pDate;
-    private String bid;
-    private String ask;
+    private Double bid;
+    private Double ask;
     private Currency currency;
     private String isDeleted;
 
