@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Map;
+
 @Component
-public class DaoInterBank {
+public class InterBankDao {
     @Autowired
     @Qualifier("testJDBC")
     JdbcTemplate jdbcTemplate;
@@ -19,8 +22,10 @@ public class DaoInterBank {
 //    }
 
     public String getCur() {
-        String sql = "SELECT name FROM users WHERE id = ?";
-        String userName = jdbcTemplate.queryForObject(sql, String.class, 1);
-        return userName;
+        String sql = "SELECT * FROM currency";
+//        String userName = jdbcTemplate.queryForObject(sql, String.class);
+        List<Map<String, Object>> userName = jdbcTemplate.queryForList(sql);
+        System.out.println(userName);
+        return "userName";
     }
 }

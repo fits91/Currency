@@ -9,7 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>currency-dao</artifactId>
+    <artifactId>currency-managers</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>ua.org.fits</groupId>
+            <artifactId>currency-beans</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -26,13 +33,5 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>ua.org.fits</groupId>
-            <artifactId>currency-managers</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
 
 </project>
