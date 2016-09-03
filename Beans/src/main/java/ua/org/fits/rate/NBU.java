@@ -3,9 +3,7 @@ package ua.org.fits.rate;
 import java.time.LocalDateTime;
 import java.util.Currency;
 
-/**
- * nbu pojo
- */
+
 public class NBU {
     private Currency currency;
     private LocalDateTime date;

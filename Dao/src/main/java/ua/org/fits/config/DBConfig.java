@@ -39,7 +39,7 @@ public class DBConfig {
         EmbeddedDatabase db = builder
                 .setType(EmbeddedDatabaseType.H2) //.H2 or .DERBY
                 .addScript("db/schema.sql")
-                .addScript("db/data.sql")
+                .addScript("db/data.s`ql")
                 .build();
         return db;
     }
