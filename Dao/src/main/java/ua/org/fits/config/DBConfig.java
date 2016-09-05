@@ -33,13 +33,13 @@ public class DBConfig {
 
 
     @Bean(name = "H2DS")
-    @ConfigurationProperties(prefix="spring.h2.datasource")
+//    @ConfigurationProperties(prefix="spring.h2.datasource")
     public DataSource getTest2DataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = builder
                 .setType(EmbeddedDatabaseType.H2) //.H2 or .DERBY
                 .addScript("db/schema.sql")
-                .addScript("db/data.s`ql")
+                .addScript("db/data.sql")
                 .build();
         return db;
     }

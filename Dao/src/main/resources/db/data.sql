@@ -1,7 +1,6 @@
-INSERT INTO users VALUES (1, 'fits', 'fits@gmail.com');
-INSERT INTO users VALUES (2, 'alex', 'alex@yahoo.com');
-INSERT INTO users VALUES (3, 'joel', 'joel@gmail.com');
-
 INSERT INTO currency (curid,curname) VALUES('UAH','Hryvnia');
 INSERT INTO currency(curid,curname) VALUES('USD','Dollar');
 INSERT INTO currency (curid,curname) VALUES('RUB','Ruble');
+
+INSERT INTO interbank(id, curid, pointDate, date, bid, ask, deleted, trendBid, trendAsk)
+	VALUES('1', 'UAH', '2016-9-4 23:30:16', '2016-9-4 23:30:16', 12, 23, null, 1, 2);

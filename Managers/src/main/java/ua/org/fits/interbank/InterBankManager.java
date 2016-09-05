@@ -11,10 +11,10 @@ import ua.org.fits.rate.InterBank;
 import java.io.IOException;
 import java.util.List;
 @Component
-public class InterBankManager implements SimpleManager<InterBankManager>{
+public class InterBankManager implements SimpleManager<InterBank>{
 
     @Override
-    public List<InterBankManager> getListFromMF()  {
+    public List<InterBank> getListFromMF()  {
         ObjectMapper mapper = new ObjectMapper();
         List<InterBank> interBanks = null;
         try {
@@ -24,26 +24,27 @@ public class InterBankManager implements SimpleManager<InterBankManager>{
         }
         System.out.println(interBanks.size());
 
-        return null;
+        return interBanks;
     }
 
 
     @Override
-    public List<InterBankManager> getListFromDB() {
+    public List<InterBank> getListFromDB() {
         return null;
     }
 
     @Override
-    public void save(InterBankManager object) {
+    public void save(InterBank object) {
 
     }
+
 
     private String getJsonStringFromMF() {
         return Constant.interBankQuery;
     }
 
     public static void main(String[] args) {
-        SimpleManager<InterBankManager> manager = new InterBankManager();
+        SimpleManager<InterBank> manager = new InterBankManager();
         try {
             manager.getListFromMF();
         } catch (IOException e) {
