@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>ua.org.fits</groupId>
-            <artifactId>currency-beans</artifactId>
+            <artifactId>currency-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

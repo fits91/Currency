@@ -13,6 +13,6 @@ public class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
     @Override
     public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
 
-        return LocalDateTime.parse(jsonParser.getText(), LocalDateTimeFormatter.get_YYYY_MMDD_HH_MM_SS_pattern());
+        return LocalDateTime.parse(jsonParser.getText(), LocalDateTimeFormatter.get_YYYY_MM_DD_HH_MM_SS_pattern());
     }
 }

@@ -8,6 +8,7 @@
         <module>Beans</module>
         <module>Dao</module>
         <module>Managers</module>
+        <module>Web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
