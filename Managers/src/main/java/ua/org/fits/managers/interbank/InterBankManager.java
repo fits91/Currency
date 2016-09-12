@@ -33,14 +33,12 @@ public class InterBankManager implements SimpleManager<InterBank> {
         ObjectMapper mapper = new ObjectMapper();
         List<InterBank> interBanks = null;
 
-        interBanks = mapper.readValue(getIBJSON(date), new TypeReference<List<InterBank>>(){});
-
-        System.out.println(interBanks.size());
+        interBanks = mapper.readValue(getMFJSON(date), new TypeReference<List<InterBank>>(){});
 
         return interBanks == null? Collections.emptyList() : interBanks;
     }
 
-    public String getIBJSON(LocalDate date) throws IOException {
+    private String getMFJSON(LocalDate date) throws IOException {
         PropertyManager propertyManager = new PropertyManager();
 
         URL mbURL = new URL(generateURL(date));
@@ -104,7 +102,7 @@ public class InterBankManager implements SimpleManager<InterBank> {
     public static void main(String[] args) {
         InterBankManager manager = new InterBankManager();
         try {
-            manager.getIBJSON(LocalDate.now());
+            manager.getMFJSON(LocalDate.now());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,6 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ComponentScan(basePackages = "ua.org.fits")
 public class Application {
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application2.class, args);
+        ApplicationContext ctx = SpringApplication.run(Application.class, args);
     }
 }

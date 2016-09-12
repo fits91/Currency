@@ -4,7 +4,6 @@ package ua.org.fits.dao.interbank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ua.org.fits.dao.SimpleDao;
 import ua.org.fits.dao.rowmappers.InterBankRowMapper;
@@ -61,7 +60,6 @@ public class InterBankDao implements SimpleDao<InterBank>{
         return maxDate;
     }
 
-    @Scheduled(fixedDelay = 5000)
     public void test() {
         System.out.println(getRateInfo(null));
     }
