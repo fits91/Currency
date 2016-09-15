@@ -40,13 +40,21 @@ public class InterBankDao implements SimpleDao<InterBank>{
     @Override
     public List<InterBank> getRateInfo(LocalDate date) {
         LocalDate maxDate = getMaxDate();
-        LocalDate searchDate  = (date == null? LocalDate.now() : maxDate);
 
-        String sql = "SELECT * FROM interbank WHERE date >= ? ";
+        LocalDate searchDate  = (date == null? maxDate : date);
+        LocalDate searchDatePlusDay = searchDate.plusDays(1);
 
-        List<InterBank> interBanks = jdbcTemplate.query(sql, new java.sql.Date[]{Date.valueOf(searchDate)}, new InterBankRowMapper());
+//        String sql = "SELECT * FROM interbank WHERE date >= ? AND <= ";
+        String sql = "SELECT * FROM interbank WHERE date BETWEEN ? AND ? ";
+
+        List<InterBank> interBanks = jdbcTemplate.query(sql, new java.sql.Date[]{Date.valueOf(searchDate), Date.valueOf(searchDatePlusDay)}, new InterBankRowMapper());
 
         return interBanks == null? Collections.emptyList() : interBanks;
+    }
+
+    @Override
+    public List<InterBank> getRateInfo() {
+        return null;
     }
 
     @Override

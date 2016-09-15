@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ua.org.fits.enums.Currency;
-import ua.org.fits.serialize.CurrencyDeserializer;
-import ua.org.fits.serialize.CurrencySerializer;
-import ua.org.fits.serialize.LocalDateTimeDeserializer;
-import ua.org.fits.serialize.LocalDateTimeSerializer;
+import ua.org.fits.serialize.*;
 
 import java.time.LocalDateTime;
 
@@ -36,6 +33,7 @@ public class InterBank {
     private Currency currency;
 
     @JsonProperty("status")
+    @JsonDeserialize(using = StatusDeserializer.class)
     private String isDeleted;
 
     public long getId() {

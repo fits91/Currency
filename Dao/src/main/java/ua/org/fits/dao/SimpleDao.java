@@ -8,6 +8,7 @@ import java.util.List;
 @Component
 public interface SimpleDao<T> {
     List<T> getRateInfo(LocalDate date);
+    List<T> getRateInfo();
     LocalDate getMaxDate();
 
 }

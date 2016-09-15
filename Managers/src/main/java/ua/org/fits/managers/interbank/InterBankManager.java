@@ -4,9 +4,11 @@ package ua.org.fits.managers.interbank;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import ua.org.fits.Constant;
+import ua.org.fits.dao.SimpleDao;
 import ua.org.fits.managers.PropertyManager;
 import ua.org.fits.managers.SimpleManager;
 import ua.org.fits.rate.InterBank;
@@ -22,23 +24,28 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Component("ibm")
 public class InterBankManager implements SimpleManager<InterBank> {
 
     @Autowired
     PropertyManager pm;
+
+    @Autowired
+    @Qualifier("ibd")
+    SimpleDao ibd;
 
     @Override
     public List<InterBank> getListFromMF(LocalDate date) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         List<InterBank> interBanks = null;
 
-        interBanks = mapper.readValue(getMFJSON(date), new TypeReference<List<InterBank>>(){});
+//        interBanks = mapper.readValue(getJSONFromMF(date), new TypeReference<List<InterBank>>(){});
+        interBanks = mapper.readValue(getJsonStringFromMF(), new TypeReference<List<InterBank>>(){});
 
         return interBanks == null? Collections.emptyList() : interBanks;
     }
 
-    private String getMFJSON(LocalDate date) throws IOException {
+    private String getJSONFromMF(LocalDate date) throws IOException {
         PropertyManager propertyManager = new PropertyManager();
 
         URL mbURL = new URL(generateURL(date));
@@ -86,6 +93,11 @@ public class InterBankManager implements SimpleManager<InterBank> {
 
     @Override
     public List<InterBank> getListFromDB(LocalDate date) {
+        return ibd.getRateInfo(date);
+    }
+
+    @Override
+    public List<InterBank> getListFromDB() {
         return null;
     }
 
@@ -102,7 +114,7 @@ public class InterBankManager implements SimpleManager<InterBank> {
     public static void main(String[] args) {
         InterBankManager manager = new InterBankManager();
         try {
-            manager.getMFJSON(LocalDate.now());
+            manager.getJSONFromMF(LocalDate.now());
         } catch (IOException e) {
             e.printStackTrace();
         }
