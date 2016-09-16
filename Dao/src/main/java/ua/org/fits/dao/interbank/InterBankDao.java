@@ -3,13 +3,17 @@ package ua.org.fits.dao.interbank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ua.org.fits.dao.SimpleDao;
 import ua.org.fits.dao.rowmappers.InterBankRowMapper;
 import ua.org.fits.rate.InterBank;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Collections;
@@ -66,6 +70,38 @@ public class InterBankDao implements SimpleDao<InterBank>{
         maxDate = (maxDate == null? LocalDate.MAX : maxDate);
 
         return maxDate;
+    }
+
+    @Override
+    public void insertRateList(final List<InterBank> list) {
+
+        String sql = "INSERT INTO interbank " +
+                     "(id, curid, pointDate, date, bid, ask, deleted, trendBid, trendAsk) " +
+                     "VALUES (?,?,?,?,?,?,?,?,?) ";
+
+
+        jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                InterBank ib = list.get(i);
+
+                ps.setString(1, ib.getId());
+                ps.setString(2, ib.getCurrency().name().toLowerCase());
+                ps.setTimestamp(3,  Timestamp.valueOf(ib.getPointDate()));
+                ps.setTimestamp(4,  Timestamp.valueOf(ib.getpDate()));
+                ps.setBigDecimal(5, BigDecimal.valueOf(ib.getBid()));
+                ps.setBigDecimal(6, BigDecimal.valueOf(ib.getAsk()));
+                ps.setString(7, ib.getIsDeleted());
+                ps.setBigDecimal(8, BigDecimal.valueOf(ib.getTrendBid()));
+                ps.setBigDecimal(9, BigDecimal.valueOf(ib.getTrendAsk()));
+
+            }
+
+            @Override
+            public int getBatchSize() {
+                return list.size();
+            }
+        });
     }
 
     public void test() {

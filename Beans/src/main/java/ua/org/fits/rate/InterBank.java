@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 public class InterBank {
 
-    private long id;
+    private String id;
 //    @JsonSerialize(using = LocalDateTimeStringConverter.class)
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -36,11 +36,11 @@ public class InterBank {
     @JsonDeserialize(using = StatusDeserializer.class)
     private String isDeleted;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -129,15 +129,15 @@ public class InterBank {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + pointDate.hashCode();
-        result = 31 * result + pDate.hashCode();
-        result = 31 * result + bid.hashCode();
-        result = 31 * result + ask.hashCode();
-        result = 31 * result + (trendAsk != null ? trendAsk.hashCode() : 0);
-        result = 31 * result + (trendBid != null ? trendBid.hashCode() : 0);
-        result = 31 * result + currency.hashCode();
-        result = 31 * result + (isDeleted != null ? isDeleted.hashCode() : 0);
+        int result = getId().hashCode();
+        result = 31 * result + (getPointDate() != null ? getPointDate().hashCode() : 0);
+        result = 31 * result + getpDate().hashCode();
+        result = 31 * result + (getBid() != null ? getBid().hashCode() : 0);
+        result = 31 * result + (getAsk() != null ? getAsk().hashCode() : 0);
+        result = 31 * result + (getTrendAsk() != null ? getTrendAsk().hashCode() : 0);
+        result = 31 * result + (getTrendBid() != null ? getTrendBid().hashCode() : 0);
+        result = 31 * result + (getCurrency() != null ? getCurrency().hashCode() : 0);
+        result = 31 * result + (getIsDeleted() != null ? getIsDeleted().hashCode() : 0);
         return result;
     }
 

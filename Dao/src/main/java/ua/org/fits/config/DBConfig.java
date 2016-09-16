@@ -25,6 +25,13 @@ public class DBConfig {
         return DataSourceBuilder.create().build();
     }
 
+
+    @Bean(name = "TDS")
+    @ConfigurationProperties(prefix="test.spring.datasource")
+    public DataSource getTestDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
     @Bean
     @Autowired
     public JdbcTemplate getProdactionJdbcTemplate(DataSource masterDS) {
@@ -33,8 +40,7 @@ public class DBConfig {
 
 
     @Bean(name = "H2DS")
-//    @ConfigurationProperties(prefix="spring.h2.datasource")
-    public DataSource getTest2DataSource() {
+    public DataSource getTestH2DataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = builder
                 .setType(EmbeddedDatabaseType.H2) //.H2 or .DERBY
@@ -46,7 +52,13 @@ public class DBConfig {
 
     @Bean(name = "testJDBC")
     @Autowired
-    public JdbcTemplate getTestJdbcTemplate(@Qualifier("H2DS") DataSource testDS) {
+    public JdbcTemplate getTestJdbcTemplate(@Qualifier("TDS") DataSource testDS) {
+        return new JdbcTemplate(testDS);
+    }
+
+    @Bean(name = "testH2JDBC")
+    @Autowired
+    public JdbcTemplate getTestH2JdbcTemplate(@Qualifier("H2DS") DataSource testDS) {
         return new JdbcTemplate(testDS);
     }
 }

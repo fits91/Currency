@@ -10,5 +10,6 @@ public interface SimpleDao<T> {
     List<T> getRateInfo(LocalDate date);
     List<T> getRateInfo();
     LocalDate getMaxDate();
+    void insertRateList(final List<T> list);
 
 }

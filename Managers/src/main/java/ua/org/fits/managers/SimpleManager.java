@@ -12,4 +12,5 @@ public interface SimpleManager<T> {
     List<T> getListFromDB(LocalDate date);
     List<T> getListFromDB();
     void save(T object);
+    void save(List<T> list) throws IOException;
 }
