@@ -9,7 +9,7 @@ create table interbank
    id                   varchar(12) not null,
    curid                varchar(5),
    pointDate            datetime not null,
-   date                 datetime not null,
+   dayDate                 datetime not null,
    bid                  decimal(5,2),
    ask                  decimal(5,2),
    deleted              varchar(1),

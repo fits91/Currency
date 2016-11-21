@@ -45,6 +45,7 @@ public class InterBankManager implements SimpleManager<InterBank> {
         return interBanks == null? Collections.emptyList() : interBanks;
     }
 
+
     private String getJSONFromMF(LocalDate date) throws IOException {
         PropertyManager propertyManager = new PropertyManager();
 
@@ -91,15 +92,11 @@ public class InterBankManager implements SimpleManager<InterBank> {
     }
 
 
-    @Override
-    public List<InterBank> getListFromDB(LocalDate date) {
-        return ibd.getRateInfo(date);
-    }
+//    @Override
+//    public List<InterBank> getListFromDB(LocalDate date) {
+//        return ibd.getRateInfo(date);
+//    }
 
-    @Override
-    public List<InterBank> getListFromDB() {
-        return null;
-    }
 
     @Override
     public void save(InterBank object) {

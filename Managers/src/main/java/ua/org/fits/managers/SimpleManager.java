@@ -9,7 +9,5 @@ import java.util.List;
 @Component
 public interface SimpleManager<T> {
     List<T> getListFromMF(LocalDate date) throws IOException;
-    List<T> getListFromDB(LocalDate date);
-    List<T> getListFromDB();
     void save(T object);
 }

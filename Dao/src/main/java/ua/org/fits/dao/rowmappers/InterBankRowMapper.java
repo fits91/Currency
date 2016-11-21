@@ -11,10 +11,12 @@ import java.sql.SQLException;
 public class InterBankRowMapper implements RowMapper<InterBank>{
     @Override
     public InterBank mapRow(ResultSet resultSet, int i) throws SQLException {
+
         InterBank interBank = new InterBank();
+
         interBank.setId(resultSet.getInt("id"));
         interBank.setCurrency(Currency.valueOf(resultSet.getString("curid").toUpperCase()));
-        interBank.setpDate(resultSet.getTimestamp("date").toLocalDateTime());
+        interBank.setpDate(resultSet.getTimestamp("dayDate").toLocalDateTime());
         interBank.setPointDate(resultSet.getTimestamp("pointDate").toLocalDateTime());
         interBank.setAsk(resultSet.getDouble("ask"));
         interBank.setBid(resultSet.getDouble("bid"));
