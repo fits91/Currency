@@ -104,8 +104,8 @@ public class InterBankManager implements SimpleManager<InterBank> {
 
     @Override
     public void save(List<InterBank> list) throws IOException {
-        ibd.insertRateList(list);
-    }
+
+}
 
 
     private String getJsonStringFromMF() {

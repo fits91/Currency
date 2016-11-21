@@ -14,7 +14,7 @@ public class InterBankRowMapper implements RowMapper<InterBank>{
 
         InterBank interBank = new InterBank();
 
-        interBank.setId(resultSet.getInt("id"));
+        interBank.setId(resultSet.getString("id"));
         interBank.setCurrency(Currency.valueOf(resultSet.getString("curid").toUpperCase()));
         interBank.setpDate(resultSet.getTimestamp("dayDate").toLocalDateTime());
         interBank.setPointDate(resultSet.getTimestamp("pointDate").toLocalDateTime());
