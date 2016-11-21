@@ -74,9 +74,8 @@ public class InterBankManager implements SimpleManager<InterBank> {
 
         }
 
-
-
     }
+
 
     private String generateURL(LocalDate date) throws IOException {
         Optional<String> url;
@@ -101,6 +100,11 @@ public class InterBankManager implements SimpleManager<InterBank> {
     @Override
     public void save(InterBank object) {
 
+    }
+
+    @Override
+    public void save(List<InterBank> list) throws IOException {
+        ibd.insertRateList(list);
     }
 
 

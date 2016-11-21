@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import ua.org.fits.managers.SimpleManager;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 @Component
 public class InterBankSheduler {
@@ -18,11 +17,11 @@ public class InterBankSheduler {
 
     @Scheduled(fixedDelay = 60000)
     public void getDataFromMF() throws IOException {
-        LocalDate localDate = LocalDate.now();
-        localDate = localDate.minusDays(780);
-
-        System.out.println(localDate);
-
+//        LocalDate localDate = LocalDate.now();
+//        localDate = localDate.minusDays(780);
+//
+//        System.out.println(localDate);
+        ibm.save(null);
 //        List<InterBank> interBankList = ibm.getListFromMF(null);
 //        System.out.println(interBankList);
     }

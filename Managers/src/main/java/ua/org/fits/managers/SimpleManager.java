@@ -10,4 +10,5 @@ import java.util.List;
 public interface SimpleManager<T> {
     List<T> getListFromMF(LocalDate date) throws IOException;
     void save(T object);
+    void save(List<T> list) throws IOException;
 }
