@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import ua.org.fits.Constant;
 import ua.org.fits.dao.SimpleDao;
 import ua.org.fits.managers.PropertyManager;
-import ua.org.fits.managers.SimpleManager;
 import ua.org.fits.rate.InterBank;
 
 import javax.xml.ws.http.HTTPException;
@@ -25,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component("ibm")
-public class InterBankManager implements SimpleManager<InterBank> {
+public class InterBankManager {
 
     @Autowired
     PropertyManager pm;
@@ -34,7 +33,6 @@ public class InterBankManager implements SimpleManager<InterBank> {
     @Qualifier("ibd")
     SimpleDao ibd;
 
-    @Override
     public List<InterBank> getListFromMF(LocalDate date) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         List<InterBank> interBanks = null;
@@ -97,12 +95,10 @@ public class InterBankManager implements SimpleManager<InterBank> {
 //    }
 
 
-    @Override
     public void save(InterBank object) {
 
     }
 
-    @Override
     public void save(List<InterBank> list) throws IOException {
 
 }
